@@ -8,9 +8,16 @@ import java.util.ArrayList;
 
 public class Prova {
 	public static void main (String [] args) {
+		// COLOR STRING
+		String RESET = "\u001B[0m";
+		String GRÜN = "\u001B[32m";
+		String GELP = "\u001B[33m";
+		
+		
+		
 		int userErsteX = 0;
 		String userErsteY = "L";
-		int userErsteAntwort = 0;
+		int userAntwort = 0;
 		
 		
 		int userZweiteX = 0;
@@ -30,7 +37,7 @@ public class Prova {
 				try {
 					cards= IOTools.readInt("Bitte, geben Sie den Anzahl von Carten (Es soll eine grade Zahl sein und maximal 20 ): ");
 					List<Cards> cardsArray = new ArrayList<>();
-					//Cards[] cardsArray = new Cards[cards];
+					
 					if (cards % 2 != 1 && cards < 21) {
 						int reihen = (int)(Math.sqrt(cards));
 						int spalte = cards /reihen;
@@ -144,10 +151,12 @@ public class Prova {
 							//break;
 						
 						}
-						//System.out.println("Reihen: " + reihen + "         Spalten:" + spalte);
+						
 						System.out.println();
 						
-						
+						for (Cards c : cardsArray) {
+							System.out.println(c.toString());
+						}
 						
 						do {
 						// CREAZIONE DELLA GRIGLIA " NUMERI"
@@ -172,9 +181,13 @@ public class Prova {
 						//#########################  IL PROBLEMA INCOMINCIA QUA #################################################
 						for (Cards c : cardsArray) {
 							
-							//System.out.println();
-	                        //System.out.println(c.toString());                                                                                                 // da rivedere !!!
-							if (c.getinGame() == true && ((userErsteX != c.getCordinateX() | !userErsteY.toUpperCase().equals(c.getCordinateY())) || (userZweiteX != c.getCordinateX() | !userZweiteY.toUpperCase().equals(c.getCordinateY() )))){
+							                                                                                              
+							if (c.getinGame() == true && (
+									
+									(userErsteX != c.getCordinateX() | !userErsteY.toUpperCase().equals(c.getCordinateY())) &&
+									(userZweiteX != c.getCordinateX() | !userZweiteY.toUpperCase().equals(c.getCordinateY() )))
+									
+								){
 								
 								if (c.getCordinateX() != spalte  ) {
 									
@@ -192,17 +205,24 @@ public class Prova {
 										}
 										
 								}
-							}                                                                                                                                 // da cambiare 
-							else if(c.getinGame() == true && userErsteX == c.getCordinateX() && userErsteY.toUpperCase().equals(c.getCordinateY()))||(c.getinGame() == true && userZweiteX == c.getCordinateX() && userZweiteY.toUpperCase().equals(c.getCordinateY() )))){
+							} 
+							// else if GRÜN KART
+							else if(c.getinGame() == true && userErsteX == c.getCordinateX() && userErsteY.toUpperCase().equals(c.getCordinateY())){
+								
 								if (c.getCordinateX() != spalte ) {
-									System.out.print(c.getCardNummer() + "  -  ");
 									
-								}
+									System.out.print(GRÜN + c.getCardNummer() + RESET +"  -  ");
+									
+									}
 								else if (c.getCordinateX() == spalte) {
+								
+									System.out.print(GRÜN + c.getCardNummer() + RESET );
 									
-									System.out.println(c.getCardNummer());
+									}
+									
+									
 									if (counterAlphabet != (cards)) {
-										// Aggiungo clausola alla if
+										
 										if (counterAlphabet != (reihen -1)) {
 											counterAlphabet ++;
 											System.out.print(alphabet[counterAlphabet] + "     ");
@@ -211,32 +231,52 @@ public class Prova {
 									}
 									
 								}
+							// else if GELP KARTE
+							//else if(c.getinGame() == true &&  userZweiteX == c.getCordinateX() && userZweiteY.toUpperCase().equals(c.getCordinateY())){
+							
+								//if (c.getCordinateX() != spalte ) {
 								
+									//System.out.print(GELP + c.getCardNummer() + RESET +"  -  ");
+									
+								//	}
+								//else if (c.getCordinateX() == spalte) {
+									
+									//System.out.print(GELP + c.getCardNummer() + RESET );
+									
+									//}
+									
+									
+									//if (counterAlphabet != (cards)) {
+										
+										//if (counterAlphabet != (reihen -1)) {
+											//counterAlphabet ++;
+											//System.out.print(alphabet[counterAlphabet] + "     ");
+										//}
+										
+									//}
+									
+								//}
+							
 							}
 							
-							
-							
-							
-							
-	                    }
-						
-					
 						// ################ INIZIO DEL GIOCO #######################
-						//System.out.println("userX:  "+userX + "      " +"userY:  "+userY );
-						if (userErsteAntwort == 0) {
+						
+						if (userAntwort == 0) {
 							System.out.println("Erste Karte");
 							userErsteX = IOTools.readInt("Bitte, geben Sie den   x coordinate : ");
 							userErsteY = IOTools.readString("Bitte, geben Sie den  y coordinate : ");
 							System.out.println();
+							
 							}
-						if (userErsteAntwort < 2) {
-							userErsteAntwort ++;
+						if (userAntwort < 2) {
+							userAntwort ++;
 						}
 						
-						if (userErsteAntwort == 2) {
+						if (userAntwort == 2) {
 							System.out.println("Zweite Karte");
-							userZweiteX = IOTools.readInt("Bitte, geben Sie den y coordinate : ");
+							userZweiteX = IOTools.readInt("Bitte, geben Sie den x coordinate : ");
 							userZweiteY = IOTools.readString("Bitte, geben Sie den y coordinate : ");
+							userAntwort = 0;
 							
 						}
 						
@@ -250,6 +290,7 @@ public class Prova {
 						
 						
 					}while(winn != true);
+					
 				
 				}	
 				

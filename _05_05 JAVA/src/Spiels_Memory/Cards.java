@@ -7,17 +7,22 @@ public class Cards {
 	private  int cordinateX ;
 	private   String cordinateY;
 	private boolean inGame ;
-	private String entdecke  ;
+	private boolean entdeckt ;
+	private String abdeckt  ;
 	
-	public Cards (int cardNummer, int cordinateX  , String cordinateY ,boolean inGame,String entdecke) {
+	
+	public Cards (int cardNummer, int cordinateX  , String cordinateY ,boolean inGame,boolean entdeckt,String abdeckt) {
 		// non posso usarli se do un valore gia dichirato
 		this.cardNummer = cardNummer ;
 		this.cordinateX = cordinateX;
 		this.cordinateY = cordinateY;
 		this.inGame = inGame;
-		this.entdecke = entdecke;
+		this.entdeckt = entdeckt;
+		this.abdeckt = abdeckt;
+		
 		
 	}
+	
 
 	public int getCardNummer() {
 		return cardNummer;
@@ -40,25 +45,37 @@ public class Cards {
 		return inGame;
 	}
 
-	public String getEntdecke() {
-		return entdecke;
+	public String getabdeckt() {
+		return abdeckt;
+	}
+	
+	public boolean getEntdeckt() {
+		return entdeckt;
 	}
 
 	public void setInGame(boolean inGame) {
 		this.inGame = inGame;
 	}
-
-	public void setEntdecke(String entdecke) {
-		this.entdecke = entdecke;
+	
+	public void setEntdeckt(boolean entdeckt) {
+		this.entdeckt = entdeckt;
 	}
+	
+	public void setAbtdeckt(String abdeckt) {
+		this.abdeckt = abdeckt;
+	}
+	
+	
+	
 
 	@Override
 	public String toString() {
 		return "Cards [cardNummer=" + cardNummer + ", cordinateX=" + cordinateX + ", cordinateY=" + cordinateY
-				+ ", inGame=" + inGame + ", entdecke=" + entdecke + "]";
+				+ ", inGame=" + inGame + ", entdecke=" + abdeckt + "]";
 	}
 	public static void clearConsole() {
-	    for (int i = 0; i < 50; ++i) System.out.println();
+	    for (int i = 0; i < 50; ++i) 
+	    	System.out.println();
 	}
 	
 }
