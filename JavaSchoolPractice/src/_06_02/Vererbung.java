@@ -42,7 +42,7 @@ abstract class Base{
 	public void foo() {
 		
 	}
-	public abstract final void go() ;
+	//public abstract final void go() ;
 		
 	
 }

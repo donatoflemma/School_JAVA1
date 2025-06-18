@@ -78,4 +78,10 @@ public class Cards {
 	    	System.out.println();
 	}
 	
+	public boolean nichtDieGleich(Cards card) {
+	    if (this.cordinateX == card.cordinateX && this.cordinateY == card.cordinateY) return true;
+	    else return false;
+ 	    
+	}
+	
 }

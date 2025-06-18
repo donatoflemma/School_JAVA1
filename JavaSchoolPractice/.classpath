@@ -6,7 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Student/Downloads/Prog1Tools 6 (1).zip"/>
 	<classpathentry kind="lib" path="C:/Users/Student/Downloads/Prog1Tools 6.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

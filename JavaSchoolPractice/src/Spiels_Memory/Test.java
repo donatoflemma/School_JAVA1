@@ -1,5 +1,4 @@
 package Spiels_Memory;
-
 import Prog1Tools.IOTools;
 import java.util.Collections;
 import java.util.List;
@@ -83,8 +82,8 @@ public class Test {
 							
 							     //   c.getinGame() == true &&  l´ho tolto peche mi da problemi con la parte ddi sotto
 							// per controllare se le due carte sono uguali !!! forse lo dovró rimettere ma non ne sono sicuro
-							if ((userErsteX != c.getCordinateX() | !userErsteY.toUpperCase().equals(c.getCordinateY())) &&
-								(userZweiteX != c.getCordinateX() | !userZweiteY.toUpperCase().equals(c.getCordinateY() )))
+							if ((userErsteX != c.getCordinateX() || !userErsteY.toUpperCase().equals(c.getCordinateY())) &&
+								(userZweiteX != c.getCordinateX() || !userZweiteY.toUpperCase().equals(c.getCordinateY() )))
 							{
 								
 								if (c.getCordinateX() != spalte  ) {
@@ -185,40 +184,58 @@ public class Test {
 						}
 						
 						counterAlphabet = 0;
-						System.out.println(" SuerAntwort: " + userAntwort);
+						//System.out.println(" SuerAntwort: " + userAntwort);
 					
 						//######################################### CONFRONTO DELLE CARTE ########################################################
 						if (userAntwort == 3) {
 							for(Cards c : cardsArray) {
-								if (c.getEntdeckt() && c.getinGame()) {
+								if (c.getEntdeckt() & c.getinGame()) {
 									for (Cards b : cardsArray) {
-										if (b.getEntdeckt() && c.getinGame() && c.getCardNummer() == b.getCardNummer() ) {
+										
+											if ( b.getEntdeckt() && b.getinGame() &&  c.getCardNummer() == b.getCardNummer()) {
+												
+												
+														c.setInGame(false);
+														c.setAbtdeckt("X");  
+											
+														b.setInGame(false);
+														b.setAbtdeckt("X");
+														userAntwort =0;
+														
+														
+														
 											
 											
-											c.setInGame(false);
-											c.setAbtdeckt("X");  
-											
-											b.setInGame(false);
-											b.setAbtdeckt("X");
-											userAntwort = 0;
-					
 											}
 										
+											
+										
+											
 										
 									}
 								}
 						}
 						
-						}
+					}
+						//if (userAntwort == 4) { 
+						//	for(Cards c : cardsArray) {
+						//		c.getabdeckt();
+						//		userErsteX = 0;
+						//		userErsteY = "L";
+					
+						//		userZweiteX = 0;
+						//		userZweiteY = "L";
+						//		userAntwort = 0;
+						//	}
+								
+						//}
 						
 						
-							
 							
 								
 									
 								
-							//}
-							//userAntwort = 0;
+							
 						
 						
 						
