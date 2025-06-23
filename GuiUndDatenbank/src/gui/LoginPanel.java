@@ -1,36 +1,27 @@
 package gui;
 import javax.swing.*;
-import launcher.MainLauncher;
 import model.Button;
 import model.Field;
-import model.Mainframe;
 
-public class LoginPanel implements Runnable {
-	 public void run() {
-	        // Invoked on the event dispatching thread.
-	        // Construct and show GUI.
-	    	 //Create and set up the window.
-		 Mainframe root1 = new Mainframe("MyApp");
-		 
-		 Field nameUser = new Field("Name User",190,150);
-		 Field password = new Field("Password",190,190);
-		 
-		 Button send = new Button("send",190,270);
-		 
-		 
-		 root1.add(nameUser);
-		 root1.add(password);
-		 root1.add(send);
-		 
-	    	  
-	    }
+public class LoginPanel extends JPanel {
+	final private  Field nameUser = new Field("Name User",190,150);
+	final private  Field password = new Field("Password",190,190);
+	final private Button logIn = new Button("Log in",190,270,7);
+	
+	final private Button forward = new Button("forward",510,70,50,30,1);
+	
+	public LoginPanel() {
+		setLayout(null); // permette il posizionamento libero
+		add(nameUser);
+		add(password);
+		add(logIn);
+		add(forward);
+	}
 
-	    public static void main(String[] args) {
-	    	// The invokeLater method schedules a Runnable to be processed 
-	    	//on the event dispatching thread
-	        SwingUtilities.invokeLater(new LoginPanel());
-	        
-	       
-	    }
-
+	public String  getText() {
+		String output = "name User: " + nameUser.getText() + "\n" +
+			    		"password: " + password.getText() + "\n" ;
+		return output ;
+		
+	}
 }
