@@ -83,7 +83,14 @@ public class Button extends JButton {
 				this.addActionListener(e -> { User u = MainLauncher.getLoginPanel().getInstanz();
 				  							  UserDAO userData = new UserDAO();
 				                              userData.Login(u);
-				                              System.out.println(MainLauncher.getLoginPanel().getInstanz().toString());
+				                              if (userData.Login(u)) {
+				                            	  System.out.println(MainLauncher.getLoginPanel().getInstanz().toString());
+				                            	  MainLauncher.getLayout().show(MainLauncher.getContainer(), "EditPanel");
+				                              }
+				                              else {
+				                            	  System.out.println("failed");
+				                              }
+				                              
 				                             });
 				break;// vado a creare un´istanza con il Listner del Bottone e ricchiamo il metodo toString()
 			case 8:

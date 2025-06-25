@@ -15,7 +15,7 @@ public class EmployeeDAO {
 		/* I ? sono segnaposto: verranno sostituiti dai veri valori più avanti.
 			Questo evita problemi di SQL injection ed è più sicuro.*/
 		PreparedStatement stmt = conn.prepareStatement(sql);//Chiede a conn (l’oggetto Connection) di preparare la query.
-		
+		//Usa PreparedStatement per tutto: è sicuro, flessibile, pulito.
 		stmt.setString(1,n.getName());// index della formattazione e valore 
 		stmt.setString(2,n.getLastName());
 		stmt.setString(3,n.getId_em());
