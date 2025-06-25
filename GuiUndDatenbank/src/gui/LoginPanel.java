@@ -2,6 +2,11 @@ package gui;
 import javax.swing.*;
 import model.Button;
 import model.Field;
+import model.User; 
+import model.User;
+import model.User;
+
+
 
 public class LoginPanel extends JPanel {
 	final private  Field nameUser = new Field("Name User",190,150);
@@ -18,10 +23,8 @@ public class LoginPanel extends JPanel {
 		add(forward);
 	}
 
-	public String  getText() {
-		String output = "name User: " + nameUser.getText() + "\n" +
-			    		"password: " + password.getText() + "\n" ;
-		return output ;
-		
+	
+	public User getInstanz() {
+		return new User(nameUser.getText(),password.getText());
 	}
 }

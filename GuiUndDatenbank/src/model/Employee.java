@@ -3,15 +3,15 @@ package model;
 public class Employee {
 	final private String name ;
 	final private String lastName;
-	final private int id;
+	final private String id_em;
 	private String workType;
 	private int vacation;
 	private int wage;
 	
-	public Employee(String name,String lastName,int id,String workType,int vacation,int wage) {
+	public Employee(String name,String lastName,String id_em,String workType,int vacation,int wage) {
 		this.name = name;
 		this.lastName = lastName;
-		this.id = id;
+		this.id_em = id_em;
 		this.workType = workType;
 		this.vacation =vacation ;
 		this.wage = wage ;
@@ -49,13 +49,17 @@ public class Employee {
 		return lastName;
 	}
 
-	public int getId() {
-		return id;
+	public String getId_em() {
+		return id_em;
 	}
 
 	@Override
 	public String toString() {
-		return "EmployeeEditPanel [name=" + name + ", lastName=" + lastName + ", id=" + id + ", workType=" + workType
-				+ ", vacation=" + vacation + ", wage=" + wage + "]";
+		return "name: " + name +"\n"+
+				"last name: " + lastName +"\n"+ 
+				"id_em: " + id_em +"\n"+ 
+				"workType: " + workType+"\n"+ 
+				"vacation: " + vacation +"\n"+ 
+				"wage: " + wage;
 	}
 }

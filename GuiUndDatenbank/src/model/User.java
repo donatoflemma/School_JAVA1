@@ -19,7 +19,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [password=" + password + ", name=" + name + "]";
+		return "password: " + password +"\n"+ "name: " + name ;
 	}
 	
 }

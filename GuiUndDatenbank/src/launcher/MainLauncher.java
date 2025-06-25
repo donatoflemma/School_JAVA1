@@ -42,7 +42,8 @@ public class MainLauncher implements Runnable {
 	        
 	       
 	    }
-
+		
+		
 		public static CardLayout getLayout() {
 			return layout;
 		}

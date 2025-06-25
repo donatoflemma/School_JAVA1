@@ -1,8 +1,8 @@
 package gui;
 import javax.swing.*;
-import model.Button;
-import model.Field;
-
+import model.*;
+import db.EmployeeDAO;
+import db.EmployeeDAO;
 
 public class EmployeeFormPanel extends JPanel{
 	final private Field name = new Field("Name",190,30);
@@ -26,16 +26,19 @@ public class EmployeeFormPanel extends JPanel{
 		add(back);
 	}
 
-	public String  getText() {
-		String output = 
-			    "name: " + name.getText() + "\n" +
-			    "lastName: " + lastName.getText() + "\n" +
-			    "id: " + id.getText() + "\n" +
-			    "workType: " + workType.getText() + "\n" +
-			    "hollyday: " + hollyday.getText() + "\n" +
-			    "wage: " + wage.getText();
-		return output ;
-		
+
+	public Employee getInstanz() {
+		return  new Employee(name.getText(),lastName.getText(),
+							id.getText(),workType.getText(),
+							Integer.parseInt(hollyday.getText()),
+							Integer.parseInt(wage.getText()));
+	}
+	
+	public void getInstanza(Field name,Field lastName ,Field id, Field workType,Field hollyday,Field wage) {
+			Employee n = new Employee(name.getText(),lastName.getText(),
+							id.getText(),workType.getText(),
+							Integer.parseInt(hollyday.getText()),
+							Integer.parseInt(wage.getText()));
 	}
 	
 }

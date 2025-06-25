@@ -4,6 +4,9 @@ import java.awt.Color;
 import launcher.*;
 import javax.swing.*;
 
+import db.EmployeeDAO;
+import db.UserDAO;
+
 
 public class Button extends JButton {
 	final private int x ; // coordinate
@@ -51,7 +54,7 @@ public class Button extends JButton {
 		switch (anwendung){
 			case 1:
 				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "EditPanel"));
-				break;
+				break;// carico il JPanel che mi serve il metodo show fa parte della classe JFrame
 			case 2:
 				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "FormPanel"));
 				break;
@@ -62,15 +65,27 @@ public class Button extends JButton {
 			case 4:
 				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "LoginPanel"));
 				break;
+
+				
 			case 5:
-				this.addActionListener(e -> System.out.println(MainLauncher.getFormPanel().getText()));
-				break;
+				this.addActionListener(e -> { Employee n = MainLauncher.getFormPanel().getInstanz();
+											  EmployeeDAO dao = new EmployeeDAO();
+											  dao.Insert(n);
+											  System.out.println(MainLauncher.getFormPanel().getInstanz().toString());
+											 });
+				break;// vado a creare delle istanze con il Listner del Bottone
+				// dao = mi serve perche il metodo non é static , qundi devo chiamare un´istanza e utilizzarla per il metodo
+				// n = creata da getIstanz() presente nel EmployeeFormPanel
 			case 6:
 				this.addActionListener(e -> System.out.println(MainLauncher.getTablePanel().getText()));
 				break;
 			case 7:
-				this.addActionListener(e -> System.out.println(MainLauncher.getLoginPanel().getText()));
-				break;
+				this.addActionListener(e -> { User u = MainLauncher.getLoginPanel().getInstanz();
+				  							  UserDAO userData = new UserDAO();
+				                              userData.Login(u);
+				                              System.out.println(MainLauncher.getLoginPanel().getInstanz().toString());
+				                             });
+				break;// vado a creare un´istanza con il Listner del Bottone e ricchiamo il metodo toString()
 			case 8:
 				this.addActionListener(e -> System.out.println(MainLauncher.getChange().getText()));
 				break;
