@@ -1,6 +1,8 @@
 package launcher;
 import javax.swing.*;
 import java.awt.CardLayout;
+
+import model.Employee;
 import model.Mainframe;
 import gui.*;
 
@@ -14,6 +16,8 @@ public class MainLauncher implements Runnable {
 	static EmployeeTablePanel TablePanel = new EmployeeTablePanel();
 	static LoginPanel loginPanel = new LoginPanel();
 	static Changes change = new Changes();
+	
+	//static Table table = new Table(new Employee("Gino","Alberto","9816516","Pittore",5,150));
 	 
 	
 	public void run() {
@@ -31,6 +35,7 @@ public class MainLauncher implements Runnable {
 		
 		 root.setContentPane(container);
 		 layout.show(container, "LoginPanel"); // mostra il menu
+		 
 }
 
 	 

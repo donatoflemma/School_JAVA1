@@ -76,22 +76,36 @@ public class Button extends JButton {
 				break;// vado a creare delle istanze con il Listner del Bottone
 				// dao = mi serve perche il metodo non é static , qundi devo chiamare un´istanza e utilizzarla per il metodo
 				// n = creata da getIstanz() presente nel EmployeeFormPanel
+				
+				
+				
+				
+				
 			case 6:
-				this.addActionListener(e -> System.out.println(MainLauncher.getTablePanel().getText()));
+				//this.addActionListener(e -> System.out.println(MainLauncher.getTablePanel().getText()));
+				this.addActionListener(e -> MainLauncher.getTablePanel().Table(MainLauncher.getTablePanel().getText()));
 				break;
+				
+				
+				
+				
+				
+				
+				
+				
 			case 7:
 				this.addActionListener(e -> { User u = MainLauncher.getLoginPanel().getInstanz();
 				  							  UserDAO userData = new UserDAO();
 				                              userData.Login(u);
-				                              if (userData.Login(u)) {
-				                            	  System.out.println(MainLauncher.getLoginPanel().getInstanz().toString());
+				                              if (userData.Login(u) ) {
+				                            	 // System.out.println(MainLauncher.getLoginPanel().getInstanz().toString());
 				                            	  MainLauncher.getLayout().show(MainLauncher.getContainer(), "EditPanel");
+				                            	  //System.out.println(userData.Login(u));
 				                              }
 				                              else {
 				                            	  System.out.println("failed");
-				                              }
-				                              
-				                             });
+				                            	  // Ricordarsi di fare un Filed dove compare che la password o il nome sono sbagliati !!!
+				                              }});
 				break;// vado a creare un´istanza con il Listner del Bottone e ricchiamo il metodo toString()
 			case 8:
 				this.addActionListener(e -> System.out.println(MainLauncher.getChange().getText()));
