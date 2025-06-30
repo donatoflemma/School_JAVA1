@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import db.EmployeeDAO;
 import db.UserDAO;
+import gui.Delet;
 
 
 public class Button extends JButton {
@@ -110,7 +111,19 @@ public class Button extends JButton {
 			case 8:
 				this.addActionListener(e -> System.out.println(MainLauncher.getChange().getText()));
 				break;
-			case 9:
+			case 9: //
+//				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Change"));
+				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Delet"));
+				break;
+			case 10: // Delet 
+				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Change"));
+				break;
+			case 11: // PopUp Yes
+				this.addActionListener(e -> MainLauncher.getDelet().getPop());
+				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Change"));
+				break;
+			case 12: // PopUp No
+				this.addActionListener(e -> pop.hide());
 				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Change"));
 				break;
 		}

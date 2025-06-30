@@ -16,6 +16,7 @@ public class MainLauncher implements Runnable {
 	static EmployeeTablePanel TablePanel = new EmployeeTablePanel();
 	static LoginPanel loginPanel = new LoginPanel();
 	static Changes change = new Changes();
+	static Delet delet = new Delet();
 	
 	//static Table table = new Table(new Employee("Gino","Alberto","9816516","Pittore",5,150));
 	 
@@ -31,6 +32,7 @@ public class MainLauncher implements Runnable {
 	 	 container.add(TablePanel,"TablePanel");
 	 	 container.add(loginPanel,"LoginPanel");
 		 container.add(change,"Change");
+		 container.add(delet,"Delet");
 		
 		
 		 root.setContentPane(container);
@@ -83,6 +85,9 @@ public class MainLauncher implements Runnable {
 
 		public static Changes getChange() {
 			return change;
+		}
+		public static Delet getDelet() {
+			return delet;
 		}
 
 		

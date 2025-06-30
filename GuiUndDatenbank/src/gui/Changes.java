@@ -4,20 +4,25 @@ import model.*;
 
 
 public class Changes extends JPanel{
+	final private  Field name = new Field("name",190,70);
 	final private  Field workType = new Field("work type",190,110);
 	final private  Field vacation = new Field("vacation",190,150);
 	final private  Field wage = new Field("wage",190,190);
-	final private Button change = new Button("change",190,270,8);
 	
-	final private Button back = new Button("back",510,70,50,30,1);
+	final private Button change = new Button("change",190,270,8);
+	final private Button back = new Button("back",20,30,50,30,1);
+	//final private Button delet = new Button("delet",510,70,50,30,1);
+	final private Button surch = new Button("surch",430,70,50,30,1);
 	
 	public Changes() {
 		setLayout(null); // permette il posizionamento libero
+		add(name);
 		add(workType);
 		add(vacation);
 		add(wage);
 		add(change);
 		add(back);
+		add(surch);
 	}
 
 	public String  getText() {
