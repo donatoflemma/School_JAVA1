@@ -12,11 +12,14 @@ import gui.Delet;
 public class Button extends JButton {
 	final private int x ; // coordinate
 	final private int y ; // coordinate
+	final private String textBotton;
 	
 	
 	
 	public Button (String textBotton, int x , int y,int anwendung) {
-		super(textBotton);
+		//super(textBotton);
+		this.textBotton=textBotton;
+		this.setText(textBotton);
 		this.x = x;
 		this.y = y;
 		this.setBounds(x, y , 200, 30);
@@ -26,7 +29,9 @@ public class Button extends JButton {
 		
 	}
 	public Button (String textBotton, int x , int y, int width, int height,int anwendung) {
-		super(textBotton);
+		//super(textBotton);
+		this.textBotton=textBotton;
+		this.setText(textBotton);
 		this.x = x;
 		this.y = y;
 		this.setBounds(x, y , width, height);
@@ -45,6 +50,10 @@ public class Button extends JButton {
 	public int getY() {
 		return y;
 	}
+	
+	public String getTextButton() {
+		return textBotton;
+	}
 
 	@Override
 	public String toString() {
@@ -53,14 +62,14 @@ public class Button extends JButton {
 	
 	public void getEvent( int anwendung) {
 		switch (anwendung){
-			case 1:
+			case 1: // Back Buttons
 				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "EditPanel"));
 				break;// carico il JPanel che mi serve il metodo show fa parte della classe JFrame
-			case 2:
+			case 2://EmployeeEditPanel
 				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "FormPanel"));
 				break;
 				
-			case 3:
+			case 3://EmployeeEditPanel
 				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "TablePanel"));
 				break;
 			case 4:
@@ -68,7 +77,7 @@ public class Button extends JButton {
 				break;
 
 				
-			case 5:
+			case 5:// Add  --------- EmployeeFormPanel 
 				this.addActionListener(e -> { Employee n = MainLauncher.getFormPanel().getInstanz();
 											  EmployeeDAO dao = new EmployeeDAO();
 											  dao.Insert(n);
@@ -82,7 +91,7 @@ public class Button extends JButton {
 				
 				
 				
-			case 6:
+			case 6:// Search ---- EmployeeTablePanel
 				//this.addActionListener(e -> System.out.println(MainLauncher.getTablePanel().getText()));
 				this.addActionListener(e -> MainLauncher.getTablePanel().Table(MainLauncher.getTablePanel().getText()));
 				break;
@@ -94,7 +103,7 @@ public class Button extends JButton {
 				
 				
 				
-			case 7:
+			case 7://LogIn
 				this.addActionListener(e -> { User u = MainLauncher.getLoginPanel().getInstanz();
 				  							  UserDAO userData = new UserDAO();
 				                              userData.Login(u);
@@ -108,25 +117,60 @@ public class Button extends JButton {
 				                            	  // Ricordarsi di fare un Filed dove compare che la password o il nome sono sbagliati !!!
 				                              }});
 				break;// vado a creare un´istanza con il Listner del Bottone e ricchiamo il metodo toString()
-			case 8:
-				this.addActionListener(e -> System.out.println(MainLauncher.getChange().getText()));
+			case 8:// change
+				this.addActionListener(e -> MainLauncher.getChange().getPopChange().getMainframe().setVisible(true));
 				break;
-			case 9: //
+			case 9: //EmployeeEditPanel
 //				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Change"));
 				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Delet"));
 				break;
 			case 10: // Delet 
-				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Change"));
+				//this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Change"));
+				this.addActionListener(e -> MainLauncher.getDelet().getPopDel().getMainframe().setVisible(true));
 				break;
-			case 11: // PopUp Yes
-				this.addActionListener(e -> MainLauncher.getDelet().getPop());
-				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Change"));
+				
+				
+				
+				
+				
+				
+				
+			case 11: // Button Yes in Delet or Change
+				this.addActionListener(e ->{
+					if ("popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getTitle())) {
+						 MainLauncher.getDelet().getPopDel().getMainframe().setVisible(false);
+					
+						//PROSEGUIRE IL CODICE ; DEVO ELIMINARE 
+					}
+					else {
+						MainLauncher.getChange().getPopChange().getMainframe().setVisible(false);
+					
+						//PROSEGUIRE IL CODICE ; DEVO SLAVARE LE MODIFICHE 
+					}});
 				break;
-			case 12: // PopUp No
-				this.addActionListener(e -> pop.hide());
-				this.addActionListener(e -> MainLauncher.getLayout().show(MainLauncher.getContainer(), "Change"));
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			case 12: // Button No in Delet or Change
+				this.addActionListener(e ->{
+					if ("popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getTitle())) {
+						MainLauncher.getDelet().getPopDel().getMainframe().setVisible(false);
+						}
+					else {
+						MainLauncher.getChange().getPopChange().getMainframe().setVisible(false); 
+					}});
 				break;
-		}
+			}
 	}
 	
 	

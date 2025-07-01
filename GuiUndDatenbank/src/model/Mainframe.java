@@ -17,10 +17,12 @@ public class Mainframe extends JFrame {
 		this.setSize(width,height);
 		
 		if(this.width > 300 & this.height >300) {
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		};// l´ho fatto per la popUp
-		
-		this.setVisible(true);
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setVisible(true);
+			}// l´ho fatto per la popUp per non poterla chiudere con la X
+		else {
+			this.setVisible(false);
+		}
 		this.setLayout(null); // disabilita il layout manager
 		}
 	
@@ -32,5 +34,7 @@ public class Mainframe extends JFrame {
 		this.height = height;
 		this.setSize(this.width, this.height); 
 	}
+	
+	
 	
 }

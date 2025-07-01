@@ -8,7 +8,7 @@ import model.Field;
 
 public class EmployeeTablePanel extends JPanel{
 	final private Field imputUser = new Field("enter name or 'all'" ,10,30,565,30);
-	final private Button research = new Button("rsc",520,70,50,30,6);
+	final private Button search = new Button("rsc",520,70,50,30,6);
 	final private Button back = new Button("back",15,70,50,30,1);
 	/*JTable(): A table is created with empty cells.
     
@@ -28,7 +28,7 @@ public class EmployeeTablePanel extends JPanel{
 	public EmployeeTablePanel() {
 		setLayout(null); // permette il posizionamento libero
 		add(imputUser);
-		add(research);
+		add(search);
 		add(back);
 		add (scroll);
 		scroll.setBounds(10, 150, 565, 250);   //x = lato sinistro  y = lato superiore  width   height 

@@ -4,10 +4,11 @@ import db.DatabaseConnection;
 import model.Employee; 
 
 public class EmployeeDAO {
+	final private Connection conn = DatabaseConnection.connect();
+	/*variabile Connection  in cui richiamo il metodo per fare la connesione col Database*/
+	
 	
 	public  void Insert(Employee n) {
-		Connection conn = DatabaseConnection.connect();
-		/*variabile Connection  in cui richiamo il metodo per fare la connesione col Database*/
 		if (conn != null) {
 		try {
 			
@@ -25,8 +26,7 @@ public class EmployeeDAO {
 		
 		stmt.executeUpdate();//Esegue la query di modifica (INSERT, UPDATE, DELETE).
 		// tutti metodi della classe PreparedStatement
-		System.out.println("Dati inseriti con successo.");
-		
+		System.out.println("Data successfully entered.");
 		conn.close();//Chiude la connessione al database -è un metodo della classe Connection
 		}
 		
@@ -34,6 +34,58 @@ public class EmployeeDAO {
 		e.printStackTrace();
 		}
 	}
-	}
+}
+	
+	public  void delte(Employee n) {
+		if (conn != null) {
+		try {String Sql = "DELETE FROM employee WHERE name = ? and lastName = ?;";
+		PreparedStatement stmt = conn.prepareStatement(Sql);
+		stmt.setString(1,n.getName());
+		stmt.setString(2,n.getLastName() );
+		stmt.executeUpdate();
+		
+		System.out.println("Data successfully deleted");
+		conn.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		}}
+	
+	public void update(Employee n) {
+		if (conn != null) {
+		try {String Sql = "UPDATE employee\r\n"
+						+ "SET workType = ?, vacation = ?, wage = ?\r\n"
+						+ "WHERE name = ?; ";
+		PreparedStatement stmt = conn.prepareStatement(Sql);
+		stmt.setString(1,n.getWorkType());
+		stmt.setInt(2,n.getVacation());
+		stmt.setInt(3,n.getWage());
+		stmt.setString(4,n.getName());
+		stmt.executeUpdate();
+		
+		/*Be careful when updating records in a table! Notice the WHERE clause 
+		 *in the UPDATE statement. The WHERE clause specifies which record(s) 
+		 *that should be updated. If you omit the WHERE clause, all records in 
+		 *the table will be updated!
+		 *
+		 *MUSTER:
+		 *
+		 *UPDATE Customers
+		  SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+          WHERE CustomerID = 1;
+          
+         *
+         *UPDATE Customers
+          SET ContactName='Juan'
+          WHERE Country='Mexico';*/
+		System.out.println("Update complete");
+		conn.close();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}}
+	
 }
 
