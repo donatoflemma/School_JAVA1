@@ -11,7 +11,7 @@ import model.User;
 public class LoginPanel extends JPanel {
 	final private  Field nameUser = new Field("Name User",190,150);
 	final private  Field password = new Field("Password",190,190);
-	final private Button logIn = new Button("Log in",190,270,7);
+	final private Button logIn = new Button("Log in",190,270,8);
 	
 	final private Button forward = new Button("forward",510,70,50,30,1);
 	

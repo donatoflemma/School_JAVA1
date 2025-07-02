@@ -11,7 +11,7 @@ public class EmployeeFormPanel extends JPanel{
 	final private Field workType = new Field("Work Type",190,150);
 	final private Field hollyday = new Field("Hollyday",190,190);
 	final private Field wage = new Field("wage",190,230);
-	final private Button add = new Button("add",190,270,5);
+	final private Button add = new Button("add",190,270,6);
 	final private Button back = new Button("back",20,30,50,30,1);
 		 
 	public EmployeeFormPanel() {
