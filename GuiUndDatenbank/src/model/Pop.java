@@ -9,8 +9,8 @@ public class Pop extends Popup {
 	final private Mainframe m;// = new Mainframe("pop",300,200);
 	final private JLabel Jl;//= new JLabel("Are u sure to delet ?");
 	final private String txt; 
-	final private Button yes = new Button ("yes",25,110,50,30,11);
-	final private Button no = new Button ("no",205,110,50,30,12);
+	final private Button yes = new Button ("yes",25,110,50,30,10);
+	final private Button no = new Button ("no",205,110,50,30,11);
 	final private Font f=new Font("Arial",Font.PLAIN,16);
 	 
 	 public Pop(String txt, String mainFrameName) {// ne creo due !!!
@@ -32,4 +32,10 @@ public class Pop extends Popup {
 	 public Mainframe getMainframe() {
 		 return m;
 	 }
+
+	 public void  setNameMainframe(String Newname) {
+		 m.setName(Newname);
+	 }
 }
+
+

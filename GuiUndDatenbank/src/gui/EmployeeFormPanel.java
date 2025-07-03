@@ -9,7 +9,7 @@ public class EmployeeFormPanel extends JPanel{
 	final private Field lastName = new Field("Last Name",190,70);
 	final private Field id = new Field("id",190,110);
 	final private Field workType = new Field("Work Type",190,150);
-	final private Field hollyday = new Field("Hollyday",190,190);
+	final private Field holiday = new Field("vacation days",190,190);
 	final private Field wage = new Field("wage",190,230);
 	final private Button add = new Button("add",190,270,6);
 	final private Button back = new Button("back",20,30,50,30,1);
@@ -20,7 +20,7 @@ public class EmployeeFormPanel extends JPanel{
 		add(lastName);
 		add(id);
 		add(workType);
-		add(hollyday);
+		add(holiday);
 		add(wage);
 		add(add);
 		add(back);
@@ -30,7 +30,7 @@ public class EmployeeFormPanel extends JPanel{
 	public Employee getInstanz() {
 		return  new Employee(name.getText(),lastName.getText(),
 							id.getText(),workType.getText(),
-							Integer.parseInt(hollyday.getText()),
+							Integer.parseInt(holiday.getText()),
 							Integer.parseInt(wage.getText()));
 	}
 	

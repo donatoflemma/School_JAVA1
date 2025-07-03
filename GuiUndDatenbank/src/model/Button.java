@@ -83,21 +83,29 @@ public class Button extends JButton {
 			this.addActionListener(e -> { Employee n = MainLauncher.getFormPanel().getInstanz();
 										  EmployeeDAO dao = new EmployeeDAO();
 										  dao.Insert(n);
-										  System.out.println(MainLauncher.getFormPanel().getInstanz().toString());
+										  //System.out.println(MainLauncher.getFormPanel().getInstanz().toString());
 			 							});
 										break;
-		case 7:// Search ---- EmployeeTablePanel/ Delet
+		case 7:// Search ---- EmployeeTablePanel/ Delet / Change
 			this.addActionListener(e -> {  if(this.getParent().getName().equals("Table")) {
 												EmployeeDAO dao = new EmployeeDAO();
-												//System.out.println(this.getParent().getName());
+												System.out.println("if");
 												MainLauncher.getTablePanel().Table(dao.Table( MainLauncher.getTablePanel().getImputUser()));
 												}
+											else if(this.getParent().getName().equals("Delet"))
+											{
+												EmployeeDAO dao = new EmployeeDAO();
+												System.out.println("else if");
+												MainLauncher.getDelet().TableDelet(dao.Table( MainLauncher.getDelet().getNameField(),MainLauncher.getDelet().getId_em()));}
 											else{
 												EmployeeDAO dao = new EmployeeDAO();
-												//System.out.println(MainLauncher.getDelet().getText());
-												MainLauncher.getDelet().TableDelet(dao.Table( MainLauncher.getDelet().getName(),MainLauncher.getDelet().getId_em()));}});
-											break;	
-		case 8://LogIn
+												System.out.println("else");
+												System.out.println("Delet :" + MainLauncher.getDelet().getName());
+												System.out.println("Table :" + MainLauncher.getTablePanel().getName());
+												System.out.println("Change :" + MainLauncher.getChange().getName());
+												MainLauncher.getChange().TableChange(dao.Table( MainLauncher.getChange().getNameField(),MainLauncher.getChange().getId_em()));}});
+										break;	
+		case 8://LogI
 			this.addActionListener(e -> { User u = MainLauncher.getLoginPanel().getInstanz();
 			  							  UserDAO userData = new UserDAO();
 			  							  userData.Login(u);
@@ -109,36 +117,43 @@ public class Button extends JButton {
 			  								  // Ricordarsi di fare un Filed dove compare che la password o il nome sono sbagliati !!!
 			  							  		}});
 										break;
-		case 9:// change - delet Buttons  ######### da continuare da qua !!!!!
-			//if(this.getParent().getName().equals("Delet")) {
-				this.addActionListener(e -> MainLauncher.getDelet().getPopDel().getMainframe().setVisible(true));
-				//}
-			//else {
-				this.addActionListener(e -> MainLauncher.getChange().getPopChange().getMainframe().setVisible(true));
-			//}
+		case 9:// change - delet Buttons  
+			this.addActionListener(e -> {if (this.getParent().getName().equals("Delet")) {
+											MainLauncher.getDelet().getPopDel().getMainframe().setVisible(true);
+										}
+										else {
+											MainLauncher.getChange().getPopChange().getMainframe().setVisible(true);
+										}});
 			break;
 		case 10:// Button Yes in Delet or Change
+			//"popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getTitle()
 			this.addActionListener(e ->{
-				if ("popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getTitle())) {
-						EmployeeDAO dao = new EmployeeDAO();
-						dao.delete(MainLauncher.getDelet().getName(), MainLauncher.getDelet().getId_em());
-						MainLauncher.getDelet().getPopDel().getMainframe().setVisible(false);
-				}
-				else {
+//				if ("popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getName())) {
+//					System.out.println("del");
+//						EmployeeDAO dao = new EmployeeDAO();
+//						System.out.println(this.getParent().getParent().getName());
+//						dao.delete(MainLauncher.getDelet().getName(), MainLauncher.getDelet().getId_em());
+//						MainLauncher.getDelet().getPopDel().getMainframe().setVisible(false);
+//				}
+//				else {
 					MainLauncher.getChange().getPopChange().getMainframe().setVisible(false);
-				
-					//PROSEGUIRE IL CODICE ; DEVO SLAVARE LE MODIFICHE 
-			}});;
+					System.out.println(MainLauncher.getChange().getWorkType());
+					System.out.println(MainLauncher.getChange().getVacation());
+					System.out.println(MainLauncher.getChange().getWage());
+					
+					});
+			
 			
 				break;
-		case 11: // Button No in Delet or Change
+		case 11: // Button No in Delet or Change  	Paolo	Testa	P098112	carpenter	6	1558
 			this.addActionListener(e ->{
-				if ("popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getTitle())) {
+				if ("popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getName())) {
 					MainLauncher.getDelet().getPopDel().getMainframe().setVisible(false);
+					
 					}
 				else {
-					MainLauncher.getChange().getPopChange().getMainframe().setVisible(false); 
-				}});
+					MainLauncher.getChange().getPopChange().getMainframe().setVisible(false);
+					}});
 			break;
 		}
 	

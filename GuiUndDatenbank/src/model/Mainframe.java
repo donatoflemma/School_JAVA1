@@ -4,6 +4,7 @@ import javax.swing. *;
 public class Mainframe extends JFrame {
 	private int width ;
 	private int height ;
+	final private String name;
 		
 	public Mainframe(String name) {
 	    this(name, 600, 500);  // chiama il costruttore con larghezza e altezza di default
@@ -11,7 +12,8 @@ public class Mainframe extends JFrame {
 	}
 	
 	public Mainframe (String name,int width,int height) {
-		super(name);  
+		//super(name);  
+		this.name = name;
 		this.width = width;
 		this.height = height;
 		this.setSize(width,height);
@@ -35,6 +37,9 @@ public class Mainframe extends JFrame {
 		this.setSize(this.width, this.height); 
 	}
 	
+	public String getName() {
+		return name;
+	}
 	
 	
 }

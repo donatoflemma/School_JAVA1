@@ -38,6 +38,7 @@ public class Delet extends JPanel {
 		add(search);
 		add(delet);
 		add (scroll);
+		
 		scroll.setBounds(10, 200, 565, 250);   //x = lato sinistro  y = lato superiore  width   height 
 		scroll.setBorder(null);
 		this.setName("Delet");// mi serve per il case 6 del Button per fare distinzione 
@@ -50,7 +51,7 @@ public class Delet extends JPanel {
 	
 	
 
-	public String  getName() {
+	public String  getNameField() {
 		String output = name.getText();
 		return output ;}
 	

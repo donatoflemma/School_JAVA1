@@ -78,34 +78,40 @@ public class EmployeeDAO {
 		}
 		}}
 	
-	public void update(Employee n) {
+	public void update(String  workType, String vacation, String wage,String name, String Id_em) {
 		Connection conn = DatabaseConnection.connect();
+		String[] updates = {"SET workType = ?","vacation = ?","wage = ?"};
+		Object [] values = new Object[3];
+		int counterValues = 0;
+		if(workType != "workType") {
+			values[counterValues] = workType;
+			counterValues ++;
+		}
+		if(vacation != "vacation") {
+			values[counterValues] = vacation;
+			counterValues ++;
+		}
+		if(wage != "wage") {
+			values[counterValues] = wage;
+		}
 		if (conn != null) {
+			
+			/*if (updates.size() > 0) {
+    String sql = "UPDATE employee SET " + String.join(", ", updates) + " WHERE name = ?";
+    values.add(n.getName()); // parametro finale: WHERE name = ?
+
+    // prepara lo statement e setta i valori con un for
+    ///DA FINIRE*/
 		try {String Sql = "UPDATE employee\r\n"
 						+ "SET workType = ?, vacation = ?, wage = ?\r\n"
-						+ "WHERE name = ?; "; // \r\n serve per andare a capo
+						+ "WHERE name = ? and id_em = ?;"; // \r\n serve per andare a capo
 		PreparedStatement stmt = conn.prepareStatement(Sql);
-		stmt.setString(1,n.getWorkType());
-		stmt.setInt(2,n.getVacation());
-		stmt.setInt(3,n.getWage());
-		stmt.setString(4,n.getName());
+		stmt.setString(1,workType);
+		stmt.setInt(2,Integer.parseInt(vacation));
+		stmt.setInt(3,Integer.parseInt(wage));
+		stmt.setString(4,name);
+		stmt.setString(5,Id_em);
 		stmt.executeUpdate();
-		
-		/*Be careful when updating records in a table! Notice the WHERE clause 
-		 *in the UPDATE statement. The WHERE clause specifies which record(s) 
-		 *that should be updated. If you omit the WHERE clause, all records in 
-		 *the table will be updated!
-		 *
-		 *MUSTER:
-		 *
-		 *UPDATE Customers
-		  SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
-          WHERE CustomerID = 1;
-          
-         *
-         *UPDATE Customers
-          SET ContactName='Juan'
-          WHERE Country='Mexico';*/
 		System.out.println("Update complete");
 		conn.close();
 		}
