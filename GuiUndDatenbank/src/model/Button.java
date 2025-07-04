@@ -13,6 +13,8 @@ public class Button extends JButton {
 	final private int x ; // coordinate
 	final private int y ; // coordinate
 	final private String textBotton;
+	private String distinguish;
+	
 	
 	
 	
@@ -40,9 +42,28 @@ public class Button extends JButton {
 		this.getEvent(anwendung);
 		
 	}
+	public Button (String textBotton, int x , int y, int width, int height,int anwendung,String distinguish) {
+		//super(textBotton);
+		this.textBotton=textBotton;
+		this.setText(textBotton);
+		this.x = x;
+		this.y = y;
+		this.distinguish = distinguish;
+		this.setBounds(x, y , width, height);
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.setHorizontalAlignment(JTextField.CENTER);
+		this.getEvent(anwendung);
+		
+	}
 
 	
-
+    public String getDistinguish() {
+    	return distinguish;
+    }
+    public void setDistinguish(String set) {
+    	this.distinguish = set;
+    }
+    
 	public int getX() {
 		return x;
 	}
@@ -83,26 +104,21 @@ public class Button extends JButton {
 			this.addActionListener(e -> { Employee n = MainLauncher.getFormPanel().getInstanz();
 										  EmployeeDAO dao = new EmployeeDAO();
 										  dao.Insert(n);
-										  //System.out.println(MainLauncher.getFormPanel().getInstanz().toString());
+										  MainLauncher.getFormPanel().getDone().setText();
 			 							});
 										break;
 		case 7:// Search ---- EmployeeTablePanel/ Delet / Change
 			this.addActionListener(e -> {  if(this.getParent().getName().equals("Table")) {
 												EmployeeDAO dao = new EmployeeDAO();
-												System.out.println("if");
 												MainLauncher.getTablePanel().Table(dao.Table( MainLauncher.getTablePanel().getImputUser()));
+												System.out.println(MainLauncher.getTablePanel().getCh().getText());
 												}
 											else if(this.getParent().getName().equals("Delet"))
 											{
 												EmployeeDAO dao = new EmployeeDAO();
-												System.out.println("else if");
 												MainLauncher.getDelet().TableDelet(dao.Table( MainLauncher.getDelet().getNameField(),MainLauncher.getDelet().getId_em()));}
 											else{
 												EmployeeDAO dao = new EmployeeDAO();
-												System.out.println("else");
-												System.out.println("Delet :" + MainLauncher.getDelet().getName());
-												System.out.println("Table :" + MainLauncher.getTablePanel().getName());
-												System.out.println("Change :" + MainLauncher.getChange().getName());
 												MainLauncher.getChange().TableChange(dao.Table( MainLauncher.getChange().getNameField(),MainLauncher.getChange().getId_em()));}});
 										break;	
 		case 8://LogI
@@ -126,33 +142,42 @@ public class Button extends JButton {
 										}});
 			break;
 		case 10:// Button Yes in Delet or Change
-			//"popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getTitle()
+			//this.addActionListener(e ->{System.out.println(this.getDistinguish());});
 			this.addActionListener(e ->{
-//				if ("popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getName())) {
-//					System.out.println("del");
-//						EmployeeDAO dao = new EmployeeDAO();
-//						System.out.println(this.getParent().getParent().getName());
-//						dao.delete(MainLauncher.getDelet().getName(), MainLauncher.getDelet().getId_em());
-//						MainLauncher.getDelet().getPopDel().getMainframe().setVisible(false);
-//				}
-//				else {
-					MainLauncher.getChange().getPopChange().getMainframe().setVisible(false);
-					System.out.println(MainLauncher.getChange().getWorkType());
-					System.out.println(MainLauncher.getChange().getVacation());
-					System.out.println(MainLauncher.getChange().getWage());
+				if (this.getDistinguish().equals("Delet")) {
+						System.out.println("del");
+						EmployeeDAO dao = new EmployeeDAO();
+						System.out.println(this.getParent().getParent().getName());
+						dao.delete(MainLauncher.getDelet().getName(), MainLauncher.getDelet().getId_em());
+						MainLauncher.getDelet().getPopDel().getMainframe().setVisible(false);
+						MainLauncher.getDelet().getDone().setText();
+						System.out.println("sto nella if");
 					
-					});
+				}
+				else {
+					System.out.println("sto nella else");
+					MainLauncher.getChange().getPopChange().getMainframe().setVisible(false);
+					String name = MainLauncher.getChange().getNameField();
+					String Id_em = MainLauncher.getChange().getId_em();
+					String workType = MainLauncher.getChange().getWorkType();
+					Integer vacation = MainLauncher.getChange().getVacation();
+					Integer wage = MainLauncher.getChange().getWage();
+					EmployeeDAO dao = new EmployeeDAO();
+					dao.update(workType, vacation, wage, name, Id_em);
+					MainLauncher.getChange().getDone().setText();
+					}});
 			
 			
 				break;
 		case 11: // Button No in Delet or Change  	Paolo	Testa	P098112	carpenter	6	1558
 			this.addActionListener(e ->{
-				if ("popDel".equals(MainLauncher.getDelet().getPopDel().getMainframe().getName())) {
+				if (this.getDistinguish().equals("Delet")) {
 					MainLauncher.getDelet().getPopDel().getMainframe().setVisible(false);
-					
+					System.out.println("sto nella if");
 					}
 				else {
 					MainLauncher.getChange().getPopChange().getMainframe().setVisible(false);
+					System.out.println("sto nella else");
 					}});
 			break;
 		}

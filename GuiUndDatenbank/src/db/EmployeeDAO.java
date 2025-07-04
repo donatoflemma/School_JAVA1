@@ -1,6 +1,8 @@
 package db;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,6 +34,8 @@ public class EmployeeDAO {
 	    }
 	}
 	
+	
+	
 	public  void Insert(Employee n) {
 		Connection conn = DatabaseConnection.connect();
 		if (conn != null) {
@@ -61,6 +65,8 @@ public class EmployeeDAO {
 	}
 }
 	
+	
+	
 	public  void delete(String fieldName,String fieldId_em) {
 		Connection conn = DatabaseConnection.connect();
 		if (conn != null) {
@@ -78,47 +84,55 @@ public class EmployeeDAO {
 		}
 		}}
 	
-	public void update(String  workType, String vacation, String wage,String name, String Id_em) {
+	
+	
+	
+	public void update(String  workType, Integer vacation, Integer wage,String name, String Id_em) {
 		Connection conn = DatabaseConnection.connect();
-		String[] updates = {"SET workType = ?","vacation = ?","wage = ?"};
-		Object [] values = new Object[3];
-		int counterValues = 0;
-		if(workType != "workType") {
-			values[counterValues] = workType;
-			counterValues ++;
+		List<String> fields = new ArrayList<>();
+		List<Object> values = new ArrayList<>();
+		int counterValues = 1;
+		if(!"workType".equals(workType)) {
+			fields.add("workType = ?");
+			values.add(workType);
 		}
-		if(vacation != "vacation") {
-			values[counterValues] = vacation;
-			counterValues ++;
+		if(!"vacation".equals(vacation)) {
+			fields.add("vacation = ?");
+			values.add(vacation);
 		}
-		if(wage != "wage") {
-			values[counterValues] = wage;
+		if(!"wage".equals(wage)) {
+			fields.add("wage = ?");
+			values.add(wage);
 		}
-		if (conn != null) {
-			
-			/*if (updates.size() > 0) {
-    String sql = "UPDATE employee SET " + String.join(", ", updates) + " WHERE name = ?";
-    values.add(n.getName()); // parametro finale: WHERE name = ?
-
-    // prepara lo statement e setta i valori con un for
-    ///DA FINIRE*/
-		try {String Sql = "UPDATE employee\r\n"
-						+ "SET workType = ?, vacation = ?, wage = ?\r\n"
-						+ "WHERE name = ? and id_em = ?;"; // \r\n serve per andare a capo
-		PreparedStatement stmt = conn.prepareStatement(Sql);
-		stmt.setString(1,workType);
-		stmt.setInt(2,Integer.parseInt(vacation));
-		stmt.setInt(3,Integer.parseInt(wage));
-		stmt.setString(4,name);
-		stmt.setString(5,Id_em);
-		stmt.executeUpdate();
-		System.out.println("Update complete");
-		conn.close();
-		}
+		try {//
+			if (values.size() > 0 && conn != null) {
+				String sql = "UPDATE employee SET " + String.join(", ", fields) + " WHERE name = ? and Id_em = ? ;";
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				for (int i = 0; i < values.size(); i++) {
+					Object val = values.get(i);
+					if(values.get(i) instanceof String) {// instanceof serve per fare il comfronto del type Object
+						stmt.setString(counterValues,(String)val);
+						counterValues++;}
+					else if (val instanceof Integer ) {
+						stmt.setInt(counterValues, (Integer)val);
+						counterValues ++;
+					}
+					
+		        }
+				stmt.setString(values.size()+1, name);
+				stmt.setString(values.size()+2, Id_em);
+				stmt.executeUpdate();
+				System.out.println("Update complete");
+				conn.close();//Marco	Bianchi	M045678	carpenter	8	1500
+			}}
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}}
+	}
+	
+	
+	
+	
 	
 	public DoubleArrayTable Table(String lookingFor) {//String classPane,
 		Connection conn = DatabaseConnection.connect();
@@ -188,6 +202,9 @@ public class EmployeeDAO {
 	
 		return sqlData;
 	}
+	
+	
+	
 	
 	
 	//Overloading  per Delet che acetta due parametri 

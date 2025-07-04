@@ -13,6 +13,7 @@ public class EmployeeFormPanel extends JPanel{
 	final private Field wage = new Field("wage",190,230);
 	final private Button add = new Button("add",190,270,6);
 	final private Button back = new Button("back",20,30,50,30,1);
+	final private Label done = new Label(190,320,"Added");
 		 
 	public EmployeeFormPanel() {
 		setLayout(null); // permette il posizionamento libero
@@ -24,6 +25,7 @@ public class EmployeeFormPanel extends JPanel{
 		add(wage);
 		add(add);
 		add(back);
+		add(done);
 	}
 
 
@@ -40,6 +42,13 @@ public class EmployeeFormPanel extends JPanel{
 							Integer.parseInt(hollyday.getText()),
 							Integer.parseInt(wage.getText()));
 	}
+
+
+	public Label getDone() {
+		return done;
+	}
+	
+	
 	
 }
 	

@@ -13,8 +13,8 @@ public class Pop extends Popup {
 	final private Button no = new Button ("no",205,110,50,30,11);
 	final private Font f=new Font("Arial",Font.PLAIN,16);
 	 
-	 public Pop(String txt, String mainFrameName) {// ne creo due !!!
-		 	m = new Mainframe (mainFrameName,300,200);// Per cambiare il nome e poter 
+	 public Pop(String txt, String FrameName,String distinguish) {// ne creo due !!!
+		 	m = new Mainframe (FrameName,300,200);// Per cambiare il nome e poter 
 		 	this.txt = txt;							//lavorare in comoditá con la if del bottone 
 		 	Jl = new JLabel(txt);
 			m.add(Jl);
@@ -22,6 +22,8 @@ public class Pop extends Popup {
 			m.add(no);
 			Jl.setBounds(75, 40, 200, 30);// posizione e dimensione del box
 			Jl.setFont(f);
+			yes.setDistinguish(distinguish);
+			no.setDistinguish(distinguish);
 			//txt.setBounds(ALLBITS, ABORT, WIDTH, HEIGHT);
 		}
 	 
