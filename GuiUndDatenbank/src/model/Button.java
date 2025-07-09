@@ -111,8 +111,15 @@ public class Button extends JButton {
 			this.addActionListener(e -> {  if(this.getParent().getName().equals("Table")) {
 												EmployeeDAO dao = new EmployeeDAO();
 												MainLauncher.getTablePanel().Table(dao.Table( MainLauncher.getTablePanel().getImputUser()));
-												System.out.println(MainLauncher.getTablePanel().getCh().getText());
-												}
+												//System.out.println(MainLauncher.getTablePanel().getCh().getText());
+												if(MainLauncher.getTablePanel().getAll().isSelected()) {// seleziono tutti i bottoni
+													MainLauncher.getTablePanel().getNameCh().setSelected(true);
+													MainLauncher.getTablePanel().getLastNameCh().setSelected(true);
+													MainLauncher.getTablePanel().getIdCh().setSelected(true);
+													MainLauncher.getTablePanel().getWorkTypeCh().setSelected(true);
+													MainLauncher.getTablePanel().getVacationCh().setSelected(true);
+													MainLauncher.getTablePanel().getWageCh().setSelected(true);
+												}}
 											else if(this.getParent().getName().equals("Delet"))
 											{
 												EmployeeDAO dao = new EmployeeDAO();

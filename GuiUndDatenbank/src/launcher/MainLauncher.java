@@ -36,7 +36,7 @@ public class MainLauncher implements Runnable {
 		
 		
 		 root.setContentPane(container);
-		 layout.show(container, "LoginPanel"); // mostra il menu
+		 layout.show(container, "TablePanel"); // "LoginPanel"
 		 
 }
 
