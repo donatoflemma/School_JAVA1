@@ -148,6 +148,10 @@ public class EmployeeDAO {
 				Statement stmt2 ;
 				PreparedStatement stmt3;
 				PreparedStatement stmt4;
+				// Qua devo mettere una if in modo da utilizzare le jcheckbox
+				
+				
+				
 				if (lookingFor.equalsIgnoreCase("all") ) { //&&"EmployeeTablePanel".equals(classPane) 
 						String sql = "SELECT * FROM employee;";
 						stmt1 = conn.createStatement();// se non devo passare niente nella Query
