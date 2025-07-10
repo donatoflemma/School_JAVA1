@@ -109,8 +109,9 @@ public class Button extends JButton {
 										break;
 		case 7:// Search ---- EmployeeTablePanel/ Delet / Change
 			this.addActionListener(e -> {  if(this.getParent().getName().equals("Table")) {
+//												System.out.println(MainLauncher.getTablePanel().getSelect());
 												EmployeeDAO dao = new EmployeeDAO();
-												MainLauncher.getTablePanel().Table(dao.Table( MainLauncher.getTablePanel().getImputUser()));
+												MainLauncher.getTablePanel().Table(dao.Table( MainLauncher.getTablePanel().getImputUser(),MainLauncher.getTablePanel().getSelect()));
 												//System.out.println(MainLauncher.getTablePanel().getCh().getText());
 												if(MainLauncher.getTablePanel().getAll().isSelected()) {// seleziono tutti i bottoni
 													MainLauncher.getTablePanel().getNameCh().setSelected(true);

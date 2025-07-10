@@ -107,19 +107,26 @@ orizzontali e verticali*/
 		return vacation;
 	}
 
+	
+	
 	public Checkb getWageCh() {
 		return wage;
 	}
-	// da finire con la lista !!!
-	public List getSelect() {
+	
+	
+	
+	public List getSelect() {// per capire quali di questi vengono selezionati 
 		List <String> checkb = new ArrayList<>();
-		String[] nameCheckb = {"name","lastName","id_em","workType","vacation","wage"};
+		//String[] nameCheckb = {"*","name","lastName","id_em","workType","vacation","wage"};
 		if (all.isSelected()) {
-			checkb.add("all");
+			checkb.add("*");
 		}
-		else {
-			
-		}
+		if (name.isSelected() && !all.isSelected())  {checkb.add("name");}
+		if (lastName.isSelected() && !all.isSelected())  {checkb.add("lastName");}
+		if (id_em.isSelected() && !all.isSelected())  {checkb.add("id_em");}
+		if (workType.isSelected() && !all.isSelected())  {checkb.add("workType");}
+		if (vacation.isSelected() && !all.isSelected())  {checkb.add("vacation");}
+		if (wage.isSelected() && !all.isSelected())  {checkb.add("wage");}
 		return checkb;
 		}
 	
