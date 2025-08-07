@@ -20,7 +20,7 @@ public class LoginPanel extends JPanel {
 		add(nameUser);
 		add(password);
 		add(logIn);
-		add(forward);
+		//add(forward);
 	}
 
 	
